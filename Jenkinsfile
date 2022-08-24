@@ -8,12 +8,12 @@ pipeline {
     stages {
         stage('stage 1') {
             steps {
-                print ("stage 1")
+                bat 'stage 1'
             }
         }
         stage('stage 2') {
             steps {
-                print ("stage 2")
+                bat 'stage 2'
             }
         }
     }
