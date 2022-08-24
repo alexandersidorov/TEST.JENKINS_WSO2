@@ -9,16 +9,13 @@ pipeline {
         stage('stage 1') {
             when {branch "develop"}
             steps {
-                sh '''
-                echo 'stage 1'
-                '''
+                print ("stage 1")
             }
         }
         stage('stage 2') {
+            when {branch "develop"}
             steps {
-            sh '''
-            echo 'stage 2'
-            '''
+                print ("stage 2")
             }
         }
     }
