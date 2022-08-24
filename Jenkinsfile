@@ -30,7 +30,7 @@ pipeline {
         stage('wso2 cli get envs') {
             steps {
                 bat '''
-                set /A envs=apictl get envs --format "{{.Name}}"
+                envs=apictl get envs --format "{{.Name}}"
                 echo "Environments :"%envs%
                 '''
             }
