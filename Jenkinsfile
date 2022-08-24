@@ -30,7 +30,7 @@ pipeline {
         stage('wso2 cli get envs') {
             steps {
                 bat '''
-                envs=$(apictl get envs --format "{{.Name}}")
+                envs=(apictl get envs --format "{{.Name}}")
                 if [ -z "$envs" ];
                     then
                             echo "No environment configured. Setting dev environment.."
