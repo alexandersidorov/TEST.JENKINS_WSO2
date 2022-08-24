@@ -8,12 +8,16 @@ pipeline {
     stages {
         stage('stage 1') {
             steps {
-                bat 'stage 1'
+                bat """
+                echo stage 1
+                """
             }
         }
         stage('stage 2') {
             steps {
-                bat 'stage 2'
+                bat """
+                echo stage 2
+                """
             }
         }
     }
