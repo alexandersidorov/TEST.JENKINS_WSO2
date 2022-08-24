@@ -20,5 +20,12 @@ pipeline {
                 """
             }
         }
+        stage('wso2 cli version') {
+            steps {
+                bat """
+                apictl version
+                """
+            }
+        }
     }
 }
