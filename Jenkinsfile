@@ -34,5 +34,13 @@ pipeline {
                 '''
             }
         }
+        stage('Deploy APIs To "dev" Environment') {
+            steps {
+                bat '''
+                apictl login live -u admin -p rj2slcxjexa3n5v5rssw -k
+                apictl import api -f ./wso2 -e dev -k
+                '''
+            }
+        }
     }
 }
