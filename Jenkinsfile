@@ -29,7 +29,7 @@ pipeline {
         }
         stage('wso2 cli get envs') {
             steps {
-                bat """
+                bat '''
                 envs=$(apictl get envs --format "{{.Name}}")
                 if [ -z "$envs" ];
                     then
@@ -43,7 +43,7 @@ pipeline {
                                 echo "Local environment is not configured. Setting dev environment.."
                             fi
                 fi
-                """
+                '''
             }
         }
     }
