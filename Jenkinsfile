@@ -38,7 +38,7 @@ pipeline {
             steps {
                 bat '''
                 apictl login live -u admin -p rj2slcxjexa3n5v5rssw -k
-                apictl import api -f ./wso2 -e dev -k
+                apictl import api -f ./wso2.zip -e dev -k
                 '''
             }
         }
