@@ -30,7 +30,19 @@ pipeline {
         stage('wso2 cli get envs') {
             steps {
                 bat """
-                apictl get envs --format "{{.Name}}"
+                envs=$(apictl get envs --format "{{.Name}}")
+                if [ -z "$envs" ];
+                    then
+                            echo "No environment configured. Setting dev environment.."
+                    else
+                            echo "Environments :"$envs
+                            if [[ $envs != *"dev"* ]]; then
+                                echo "Dev environment is not configured. Setting dev environment.."
+                            fi
+                            if [[ $envs != *"local"* ]]; then
+                                echo "Local environment is not configured. Setting dev environment.."
+                            fi
+                fi
                 """
             }
         }
