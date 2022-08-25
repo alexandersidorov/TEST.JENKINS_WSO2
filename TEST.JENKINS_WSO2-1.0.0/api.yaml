@@ -3,7 +3,7 @@ version: v4.0.0
 data:
   name: TEST.JENKINS_WSO2
   description: TEST.JENKINS_WSO2
-  context: /
+  context: /my/test/wso2
   version: 1.0.0
   provider: admin
   lifeCycleStatus: CREATED
