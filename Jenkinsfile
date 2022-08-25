@@ -32,7 +32,7 @@ pipeline {
             steps {
                    bat '''
                    apictl login dev -u admin -p rj2slcxjexa3n5v5rssw -k
-                   apictl set --vcs-source-repo-path ./ -k
+                   apictl set --vcs-source-repo-path .\\ -k
                    apictl vcs deploy -e dev -k
                    '''
            }
