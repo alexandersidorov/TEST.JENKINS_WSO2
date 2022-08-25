@@ -10,7 +10,7 @@ pipeline {
             steps {
                 bat """
                 echo %WORKSPACE%
-                dir /ah
+                dir /a
                 """
             }
         }
