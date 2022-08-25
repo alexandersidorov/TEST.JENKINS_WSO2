@@ -6,7 +6,7 @@ data:
   context: /my/test/wso2
   version: 1.0.0
   provider: admin
-  lifeCycleStatus: CREATED
+  lifeCycleStatus: PUBLISHED
   isRevision: false
   revisionId: 0
   type: HTTP
@@ -20,9 +20,9 @@ data:
   visibility: PUBLIC
   endpointConfig:
     endpoint_type: http
-    production_endpoints:
-      url: http://localhost:8080
     sandbox_endpoints:
-      url: http://localhost:8081
+      url: http://etp-repo-scan-restscanner-etp.apps.okd4.sm-soft.ru
+    production_endpoints:
+      url: http://etp-repo-scan-restscanner-etp.apps.okd4.sm-soft.ru
   endpointImplementationType: ENDPOINT
   websubSubscriptionConfiguration: null
