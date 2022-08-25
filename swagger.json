@@ -1,0 +1,655 @@
+{
+	"swagger": "2.0",
+	"info": {
+		"description": "Rest Api для сканирования репозиториев.",
+		"version": "1.0",
+		"title": "ETP.REPO_SCAN.RestScanner"
+	},
+	"host": "localhost:8080",
+	"basePath": "/",
+	"tags": [
+		{
+			"name": "ETP.REPO_SCAN.RestScanner",
+			"description": "Main Controller"
+		}
+	],
+	"paths": {
+		"/repo/info": {
+			"get": {
+				"tags": [
+					"ETP.REPO_SCAN.RestScanner"
+				],
+				"summary": "Получение описания репозитория",
+				"operationId": "getDescriptionUsingGET",
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "branch",
+						"in": "query",
+						"description": "Ветка",
+						"required": true,
+						"type": "string",
+						"allowEmptyValue": false,
+						"x-example": "develop"
+					},
+					{
+						"name": "name",
+						"in": "query",
+						"description": "Имя репозитория",
+						"required": true,
+						"type": "string",
+						"allowEmptyValue": false,
+						"x-example": "https://gitlab.sm-soft.ru/cloudcom/EFP.DTIU_CAFE.038202"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Формирование прошло успешно",
+						"schema": {
+							"$ref": "#/definitions/ComponentGroup"
+						}
+					},
+					"400": {
+						"description": "Ошибка запроса",
+						"schema": {
+							"$ref": "#/definitions/ErrorResponse"
+						}
+					},
+					"500": {
+						"description": "Внутренняя ошибка сервиса",
+						"schema": {
+							"$ref": "#/definitions/ErrorResponse"
+						}
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/repo/scan": {
+			"post": {
+				"tags": [
+					"ETP.REPO_SCAN.RestScanner"
+				],
+				"summary": "Сканирование всех репозиториев",
+				"operationId": "scanUsingPOST",
+				"consumes": [
+					"application/json"
+				],
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "scanType",
+						"in": "query",
+						"description": "Тип сканирования (FULL, LAST_MODIFIED)",
+						"required": true,
+						"type": "string",
+						"allowEmptyValue": false,
+						"x-example": "FULL"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Сканирование запущено",
+						"schema": {
+							"$ref": "#/definitions/ScanResponse"
+						}
+					},
+					"400": {
+						"description": "Ошибка, идет сканирование",
+						"schema": {
+							"$ref": "#/definitions/ScanResponse"
+						}
+					},
+					"500": {
+						"description": "Внутренняя ошибка сервиса",
+						"schema": {
+							"$ref": "#/definitions/ScanResponse"
+						}
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/repo/store": {
+			"post": {
+				"tags": [
+					"ETP.REPO_SCAN.RestScanner"
+				],
+				"summary": "Валидация описания репозитория и сохранение данных",
+				"operationId": "storeUsingPOST",
+				"consumes": [
+					"application/json"
+				],
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "branch",
+						"in": "query",
+						"description": "Ветка",
+						"required": true,
+						"type": "string",
+						"allowEmptyValue": false,
+						"x-example": "develop"
+					},
+					{
+						"name": "name",
+						"in": "query",
+						"description": "Имя репозитория",
+						"required": true,
+						"type": "string",
+						"allowEmptyValue": false,
+						"x-example": "https://gitlab.sm-soft.ru/cloudcom/EFP.DTIU_CAFE.038202"
+					},
+					{
+						"in": "body",
+						"name": "request body",
+						"description": "Тело запроса",
+						"required": false,
+						"schema": {
+							"$ref": "#/definitions/ComponentGroup"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Валидация выполнена",
+						"schema": {
+							"$ref": "#/definitions/ArrayNode"
+						}
+					},
+					"400": {
+						"description": "Ошибки при валидации",
+						"schema": {
+							"type": "array",
+							"items": {
+								"$ref": "#/definitions/ValidationError"
+							}
+						}
+					},
+					"422": {
+						"description": "Ошибка запроса",
+						"schema": {
+							"$ref": "#/definitions/ErrorResponse"
+						}
+					},
+					"500": {
+						"description": "Внутренняя ошибка сервиса",
+						"schema": {
+							"$ref": "#/definitions/ErrorResponse"
+						}
+					}
+				},
+				"deprecated": false
+			}
+		},
+		"/repo/validation": {
+			"post": {
+				"tags": [
+					"ETP.REPO_SCAN.RestScanner"
+				],
+				"summary": "Валидация описания репозитория",
+				"operationId": "validationUsingPOST",
+				"consumes": [
+					"application/json"
+				],
+				"produces": [
+					"*/*"
+				],
+				"parameters": [
+					{
+						"name": "branch",
+						"in": "query",
+						"description": "Ветка",
+						"required": true,
+						"type": "string",
+						"allowEmptyValue": false,
+						"x-example": "develop"
+					},
+					{
+						"name": "name",
+						"in": "query",
+						"description": "Имя репозитория",
+						"required": true,
+						"type": "string",
+						"allowEmptyValue": false,
+						"x-example": "https://gitlab.sm-soft.ru/cloudcom/EFP.DTIU_CAFE.038202"
+					},
+					{
+						"in": "body",
+						"name": "request body",
+						"description": "Тело запроса",
+						"required": false,
+						"schema": {
+							"$ref": "#/definitions/ComponentGroup"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Валидация прошла успешно",
+						"schema": {
+							"$ref": "#/definitions/ArrayNode"
+						}
+					},
+					"400": {
+						"description": "Ошибки при валидации",
+						"schema": {
+							"type": "array",
+							"items": {
+								"$ref": "#/definitions/ValidationError"
+							}
+						}
+					},
+					"422": {
+						"description": "Ошибка запроса",
+						"schema": {
+							"$ref": "#/definitions/ErrorResponse"
+						}
+					},
+					"500": {
+						"description": "Внутренняя ошибка сервиса",
+						"schema": {
+							"$ref": "#/definitions/ErrorResponse"
+						}
+					}
+				},
+				"deprecated": false
+			}
+		}
+	},
+	"definitions": {
+		"ArrayNode": {
+			"type": "object",
+			"title": "ArrayNode"
+		},
+		"Component": {
+			"type": "object",
+			"required": [
+				"artefact",
+				"component_name",
+				"description",
+				"extra_data",
+				"meta_type",
+				"realization"
+			],
+			"properties": {
+				"component_name": {
+					"type": "string",
+					"example": "snils_online_service",
+					"description": "Наименование компонента"
+				},
+				"description": {
+					"type": "string",
+					"description": "Описание компонента"
+				},
+				"artefact": {
+					"type": "string",
+					"example": "/ETP.SNILS_ONLINE.Bar/snils_online_service.bar",
+					"description": "Артефакт"
+				},
+				"realization": {
+					"type": "string",
+					"example": "IIB_APPLICATION",
+					"description": "Реализация"
+				},
+				"meta_type": {
+					"type": "string",
+					"example": "GU_INT_PROCESS",
+					"description": "Мета тип"
+				},
+				"extra_data": {
+					"example": {
+						"data": "data"
+					},
+					"description": "Дополнительные данные",
+					"$ref": "#/definitions/JsonNode"
+				}
+			},
+			"title": "Component",
+			"description": "Component"
+		},
+		"ComponentGroup": {
+			"type": "object",
+			"required": [
+				"backs",
+				"fronts",
+				"group",
+				"meta_types",
+				"service_codes",
+				"tags",
+				"version"
+			],
+			"properties": {
+				"version": {
+					"type": "string",
+					"example": "1.0",
+					"description": "Версия формата"
+				},
+				"group": {
+					"type": "string",
+					"example": "DTIU_CAFE",
+					"description": "Наименование группы"
+				},
+				"meta_types": {
+					"type": "array",
+					"example": [
+						"EFP_PROCESS"
+					],
+					"description": "Мета типы",
+					"items": {
+						"type": "string"
+					}
+				},
+				"fronts": {
+					"type": "array",
+					"example": [],
+					"description": "Фронт",
+					"items": {
+						"type": "string"
+					}
+				},
+				"backs": {
+					"type": "array",
+					"example": [],
+					"description": "Бэк",
+					"items": {
+						"type": "string"
+					}
+				},
+				"tags": {
+					"type": "array",
+					"example": [
+						"EFP_CORE",
+						"V61",
+						"QUEUE",
+						"JDBC"
+					],
+					"description": "Теги",
+					"items": {
+						"type": "string"
+					}
+				},
+				"service_codes": {
+					"type": "array",
+					"example": [
+						"038202"
+					],
+					"description": "Сервис коды",
+					"items": {
+						"type": "string"
+					}
+				},
+				"components": {
+					"type": "array",
+					"example": [
+						{
+							"component_name": "EFP.DTIU_CAFE.038202-db-pcvz",
+							"description": "Таблицы интеграционного процесса",
+							"artefact": "sql/pcvz",
+							"realization": "SQL_SCRIPT",
+							"meta_type": "DATA_STORAGE",
+							"extra_data": [
+								{
+									"action": [
+										"INSERT_INTO"
+									],
+									"description": null,
+									"entity": "public.sudir_info"
+								}
+							]
+						},
+						{
+							"component_name": "EFP.DTIU_CAFE.038202-efp-dtiu-cafe-038202-adapter",
+							"description": "Включение сезонного (летнего) кафе при стационарном предприятии общественного питания в схему размещения сезонных (летних) кафе при стационарных предприятиях общественного питания (внесение изменений в схему размещения)",
+							"artefact": "/",
+							"realization": "JAVA_DOCKER_OPEN_SHIFT",
+							"meta_type": "EFP_ADAPTER_MODEL",
+							"extra_data": {
+								"is_status_to_applicant": "true",
+								"model_package": "ru.smsoft.efp.core.dtiu_038202.model",
+								"is_reply_to_header": "true",
+								"service_group": "DTIU",
+								"config_map": "/efp-dtiu-cafe-038202-adapter-cm.yml",
+								"artifact_id": "efp-dtiu-cafe-038202-adapter",
+								"api_version": "1.0",
+								"version": "1.3.2",
+								"url": "http://istio-ingressgateway-istio-system.app.okd.sm-soft.ru/efp-dtiu-cafe-038202-adapter",
+								"container_name": "efp-dtiu-cafe-038202-adapter",
+								"group_id": "ru.smsoft.efp.core",
+								"api_name": "GU-DTIU-038202",
+								"config_vs": null,
+								"config_svc": "/efp-dtiu-cafe-038202-adapter-svc.yml",
+								"service_code": "038202",
+								"links": {
+									"urls": [
+										{
+											"value": "http://efp-pcvz-service:8080",
+											"property": "URL_PCVZ",
+											"source": "CM"
+										},
+										{
+											"value": "efp8.sm-soft.ru",
+											"property": "GRAYLOG_HOST",
+											"source": "CM"
+										},
+										{
+											"value": "http://sn-generator:8080",
+											"property": "URL_SN_GENERATOR",
+											"source": "CM"
+										},
+										{
+											"value": "http://119c41ae58054432b209e2868d33ec2e@185.204.3.132:9100/18",
+											"property": "SENTRY_DSN",
+											"source": "CM"
+										},
+										{
+											"value": "http://sudir-token:8080/introspect",
+											"property": "URL_SUDIR_TOKEN",
+											"source": "CM"
+										},
+										{
+											"value": "http://qm1.sm-soft.ru:7801/EfspSignService",
+											"property": "URL_EFSP_SIGN_SERVICE",
+											"source": "CM"
+										},
+										{
+											"value": "http://elk-mdm.srvdev.ru:80/masterDB-war/Find",
+											"property": "URL_ELK_MDM",
+											"source": "CM"
+										},
+										{
+											"value": "tcp://efp1.sm-soft.ru:61616",
+											"property": "ACTIVEMQ_URL",
+											"source": "CM"
+										},
+										{
+											"value": "http://pfo-rest-api:8080",
+											"property": "URL_PFO",
+											"source": "CM"
+										},
+										{
+											"value": "http://etp3.sm-soft.ru/MpguSignService",
+											"property": "URL_MPGU_SIGN",
+											"source": "CM"
+										},
+										{
+											"value": "http://pfp-api.k8s.proitr.ru",
+											"property": "URL_PFP",
+											"source": "CM"
+										},
+										{
+											"value": "http://efp6.sm-soft.ru:9763/oauth2/introspect",
+											"property": "URL_WSO2_INTROSPECT",
+											"source": "CM"
+										}
+									],
+									"queues": [
+										{
+											"value": "ETP.STATUS",
+											"property": "QUEUE_ETP_STATUS",
+											"source": "CM"
+										},
+										{
+											"value": "PIV.ISPK.ADAPTER",
+											"property": "QUEUE_PIV_ISPK",
+											"source": "CM"
+										},
+										{
+											"value": "ETP.APPLICATION",
+											"property": "QUEUE_ETP_APPLICATION",
+											"source": "CM"
+										},
+										{
+											"value": "PIV.MOS.ADAPTER.REQ",
+											"property": "QUEUE_PIV_MOS",
+											"source": "CM"
+										},
+										{
+											"value": "PIV.NPC.ADAPTER",
+											"property": "QUEUE_PIV_NPC",
+											"source": "CM"
+										},
+										{
+											"value": "PIV.ELK.ADAPTER",
+											"property": "QUEUE_PIV_ELK",
+											"source": "CM"
+										},
+										{
+											"value": "PIV.ELK2.ADAPTER",
+											"property": "QUEUE_PIV_ULK",
+											"source": "CM"
+										},
+										{
+											"value": "AUDIT.STATUS",
+											"property": "QUEUE_AUDIT_STATUS",
+											"source": "CM"
+										},
+										{
+											"value": "PCVZ.STATUS",
+											"property": "QUEUE_PCVZ_STATUS",
+											"source": "CM"
+										},
+										{
+											"value": "PCVZ.APPLICATION",
+											"property": "QUEUE_PCVZ_APPLICATION",
+											"source": "CM"
+										},
+										{
+											"value": "AUDIT.APPLICATION",
+											"property": "QUEUE_AUDIT_APPLICATION",
+											"source": "CM"
+										}
+									]
+								},
+								"api_description": "Включение сезонного (летнего) кафе при стационарном предприятии общественного питания в схему размещения сезонных (летних) кафе при стационарных предприятиях общественного питания (внесение изменений в схему размещения)",
+								"efp_core_version": "1.3.2",
+								"config": "/efp-dtiu-cafe-038202-adapter.yml"
+							}
+						},
+						{
+							"component_name": "EFP.DTIU_CAFE.038202-src-main-resources-xsd-Cafe_20210312.xsd",
+							"description": "Схема формата взаимодействия",
+							"artefact": "src/main/resources/xsd/Cafe_20210312.xsd",
+							"realization": "XSD",
+							"meta_type": "SCHEMA",
+							"extra_data": {
+								"imports": [],
+								"type": "DOCUMENT",
+								"target_namespace": "urn://cafe.efp.mos.ru/1.0.0"
+							}
+						},
+						{
+							"component_name": "EFP.DTIU_CAFE.038202-wso2-swagger_GU-DTIU-038202_1.0",
+							"description": "Включение сезонного (летнего) кафе при стационарном предприятии общественного питания в схему размещения сезонных (летних) кафе при стационарных предприятиях общественного питания (внесение изменений в схему размещения)",
+							"artefact": "wso2/swagger.yml",
+							"realization": "OPEN_API",
+							"meta_type": "SWAGGER_EXTERNAL",
+							"extra_data": {
+								"description": "Включение сезонного (летнего) кафе при стационарном предприятии общественного питания в схему размещения сезонных (летних) кафе при стационарных предприятиях общественного питания (внесение изменений в схему размещения)",
+								"title": "GU-DTIU-038202",
+								"version": "1.0"
+							}
+						}
+					],
+					"description": "Компоненты",
+					"items": {
+						"$ref": "#/definitions/Component"
+					}
+				}
+			},
+			"title": "ComponentGroup",
+			"description": "ComponentGroup"
+		},
+		"ErrorResponse": {
+			"type": "object",
+			"required": [
+				"message"
+			],
+			"properties": {
+				"message": {
+					"type": "string",
+					"example": "Can't clone repository",
+					"description": "Текст ошибки"
+				}
+			},
+			"title": "ErrorResponse",
+			"description": "Сообщение об ошибке"
+		},
+		"JsonNode": {
+			"type": "object",
+			"title": "JsonNode"
+		},
+		"ScanResponse": {
+			"type": "object",
+			"required": [
+				"message"
+			],
+			"properties": {
+				"message": {
+					"type": "string",
+					"example": "Scan started",
+					"description": "Сообщение"
+				}
+			},
+			"title": "ScanResponse",
+			"description": "Сообщение о вызове метода сканирования"
+		},
+		"ValidationError": {
+			"type": "object",
+			"properties": {
+				"repo_name": {
+					"type": "string",
+					"example": "EFP.DTIU_CAFE.038202",
+					"description": "Имя репозитория"
+				},
+				"realization": {
+					"type": "string",
+					"example": "JAVA_DOCKER_OPEN_SHIFT",
+					"description": "Реализация"
+				},
+				"artefact": {
+					"type": "string",
+					"example": "/",
+					"description": "Артефакт"
+				},
+				"repo_info": {
+					"type": "string",
+					"example": "EFP_ADAPTER_MODEL",
+					"description": "Доп. инфо"
+				},
+				"message": {
+					"type": "string",
+					"example": "Field 'description' is not defined",
+					"description": "Сообщение"
+				}
+			},
+			"title": "ValidationError"
+		}
+	}
+}

@@ -1,0 +1,6 @@
+environments:
+    - name: dev
+      configs:
+          endpoints:
+              production: http://localhost:8080
+              sandbox: http://localhost:8081

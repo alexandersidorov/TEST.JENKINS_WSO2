@@ -2,11 +2,11 @@ type: api
 version: v4.0.0
 data:
   name: TEST.JENKINS_WSO2
-  description: тест публикации/обновления апи из pipeline jenkins
-  context: /test/jenkins/wso2
+  description: Тест jenkins с WSO2.
+  context: /
   version: "1.0"
   provider: admin
-  lifeCycleStatus: PUBLISHED
+  lifeCycleStatus: CREATED
   isRevision: false
   revisionId: 0
   type: HTTP
