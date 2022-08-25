@@ -6,17 +6,10 @@ pipeline {
     }
     agent any
     stages {
-        stage('stage 1') {
+        stage('echo workspace') {
             steps {
                 bat """
-                echo stage 1
-                """
-            }
-        }
-        stage('stage 2') {
-            steps {
-                bat """
-                echo stage 2
+                echo %WORKSPACE%
                 """
             }
         }
@@ -36,14 +29,11 @@ pipeline {
         }
         stage('Deploy APIs To "dev" Environment') {
             steps {
-//                 bat '''
-//                 apictl login dev -u admin -p rj2slcxjexa3n5v5rssw -k
-//                 apictl import api -f ./wso2 -e dev -k
-//                 '''
-                   bat '''
-                   apictl login dev -u admin -p rj2slcxjexa3n5v5rssw -k
-                   apictl vcs deploy -e dev -k
-                   '''
+//                    bat '''
+//                    apictl login dev -u admin -p rj2slcxjexa3n5v5rssw -k
+//                    apictl set --vcs-source-repo-path ./TEST.JENKINS_WSO2 -k
+//                    apictl vcs deploy -e dev -k
+//                    '''
             }
         }
     }
