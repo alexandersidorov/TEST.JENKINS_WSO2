@@ -38,6 +38,20 @@ pipeline {
                 '''
             }
         }
+        stage('wso2 cli set repo source') {
+            steps {
+                bat '''
+                apictl set --vcs-source-repo-path "%appDir%" -k
+                '''
+            }
+        }
+        stage('wso2 cli vcs init') {
+            steps {
+                bat '''
+                apictl vcs init
+                '''
+            }
+        }
         stage('wso2 cli vcs status') {
             steps {
                 bat '''
@@ -48,8 +62,6 @@ pipeline {
         stage('Deploy APIs To "dev" Environment') {
             steps {
                    bat '''
-                   apictl set --vcs-source-repo-path "%appDir%" -k
-                   apictl vcs init
                    apictl vcs deploy -e dev -k
                    '''
            }
