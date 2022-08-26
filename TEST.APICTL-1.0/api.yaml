@@ -3,7 +3,7 @@ version: v4.0.0
 data:
   name: TEST.APICTL
   description: TEST.APICTL
-  context: /
+  context: /test/apictl
   version: "1.0"
   provider: admin
   lifeCycleStatus: PUBLISHED
