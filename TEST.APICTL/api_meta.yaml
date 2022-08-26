@@ -3,5 +3,5 @@ deploy:
     preserveProvider: true
     rotateRevision: false
     update: true
-name: TEST.JENKINS_WSO2
-version: 1.0.0
+name: TEST.APICTL
+version: "1.0"
