@@ -59,12 +59,19 @@ pipeline {
                 '''
             }
         }
-        stage('Deploy APIs To "dev" Environment') {
+        stage('deploy APIs To "dev" Environment') {
             steps {
                    bat '''
                    apictl vcs deploy -e dev -k
                    '''
            }
+       }
+       stage('delete vcs.yaml') {
+            steps {
+                bat '''
+                del vcs.yaml
+                '''
+            }
        }
 //         stage('wso2 cli import') {
 //             steps {
