@@ -66,13 +66,6 @@ pipeline {
                    '''
            }
        }
-       stage('delete vcs.yaml') {
-            steps {
-                bat '''
-                del vcs.yaml
-                '''
-            }
-       }
 //         stage('wso2 cli import') {
 //             steps {
 //                 bat '''
@@ -80,5 +73,12 @@ pipeline {
 //                 '''
 //             }
 //         }
+    }
+    post {
+        always {
+            bat '''
+            del vcs.yaml
+            '''
+        }
     }
 }
