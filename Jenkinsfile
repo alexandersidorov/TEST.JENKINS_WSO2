@@ -48,7 +48,7 @@ pipeline {
         stage('Deploy APIs To "dev" Environment') {
             steps {
                    bat '''
-                   apictl set --vcs-source-repo-path "%appDir%"\\TEST.JENKINS_WSO2-1.0.0 -k
+                   apictl set --vcs-source-repo-path "%appDir%\\TEST.JENKINS_WSO2-1.0.0" -k
                    apictl vcs deploy -e dev -k
                    '''
            }
