@@ -3,5 +3,5 @@ deploy:
     preserveProvider: true
     rotateRevision: false
     update: true
-name: TEST.APICTL.IMPORT
+name: TEST.APICTL
 version: "1.0"

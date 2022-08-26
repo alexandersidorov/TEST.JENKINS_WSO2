@@ -45,20 +45,20 @@ pipeline {
                 '''
             }
         }
-//         stage('Deploy APIs To "dev" Environment') {
-//             steps {
-//                    bat '''
-//                    apictl set --vcs-source-repo-path "%appDir%" -k
-//                    apictl vcs deploy -e dev -k
-//                    '''
-//            }
-//        }
-        stage('wso2 cli import') {
+        stage('Deploy APIs To "dev" Environment') {
             steps {
-                bat '''
-                apictl import api -f "%appDir%\\TEST.APICTL.IMPORT-1.0" -e dev -k
-                '''
-            }
-        }
+                   bat '''
+                   apictl set --vcs-source-repo-path "%appDir%" -k
+                   apictl vcs deploy -e dev -k
+                   '''
+           }
+       }
+//         stage('wso2 cli import') {
+//             steps {
+//                 bat '''
+//                 apictl import api -f "%appDir%\\TEST.APICTL.IMPORT-1.0" -e dev -k
+//                 '''
+//             }
+//         }
     }
 }
