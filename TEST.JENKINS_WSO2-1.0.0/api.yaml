@@ -11,7 +11,7 @@ data:
   cacheTimeout: 300
   hasThumbnail: false
   isDefaultVersion: false
-  isRevision: true
+  isRevision: false
   type: HTTP
   transport:
   - http
