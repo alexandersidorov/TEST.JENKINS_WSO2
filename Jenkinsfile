@@ -45,13 +45,20 @@ pipeline {
                 '''
             }
         }
-        stage('Deploy APIs To "dev" Environment') {
+//         stage('Deploy APIs To "dev" Environment') {
+//             steps {
+//                    bat '''
+//                    apictl set --vcs-source-repo-path "%appDir%" -k
+//                    apictl vcs deploy -e dev -k
+//                    '''
+//            }
+//        }
+        stage('wso2 cli import') {
             steps {
-                   bat '''
-                   apictl set --vcs-source-repo-path "%appDir%" -k
-                   apictl vcs deploy -e dev -k
-                   '''
-           }
-       }
+                bat '''
+                apictl import-api -f "%appDir%" -e dev -k
+                '''
+            }
+        }
     }
 }
