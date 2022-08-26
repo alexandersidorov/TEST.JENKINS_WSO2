@@ -1,9 +1,9 @@
 type: api
 version: v4.0.0
 data:
-  name: TEST.APICTL
-  description: TEST.APICTL
-  context: /test/apictl
+  name: TEST.APICTL.DEPLOY
+  description: TEST.APICTL.DEPLOY
+  context: /test/apictl/deploy
   version: "1.0"
   provider: admin
   lifeCycleStatus: PUBLISHED
@@ -14,7 +14,7 @@ data:
   - http
   - https
   tags:
-  - TEST.APICTL
+  - TEST.APICTL.DEPLOY
   policies:
   - Unlimited
   visibility: PUBLIC

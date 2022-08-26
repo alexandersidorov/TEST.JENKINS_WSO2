@@ -49,6 +49,7 @@ pipeline {
             steps {
                    bat '''
                    apictl set --vcs-source-repo-path "%appDir%" -k
+                   apictl vcs init
                    apictl vcs deploy -e dev -k
                    '''
            }
