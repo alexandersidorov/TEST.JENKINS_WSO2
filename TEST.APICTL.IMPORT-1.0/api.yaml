@@ -2,7 +2,7 @@ type: api
 version: v4.0.0
 data:
   name: TEST.APICTL.IMPORT
-  description: TEST.APICTL.IMPORT
+  description: test update with import
   context: /test/import
   version: "1.0"
   provider: admin
