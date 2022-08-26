@@ -24,13 +24,6 @@ pipeline {
                 """
             }
         }
-        stage('wso2 cli dev login') {
-            steps {
-                bat '''
-                apictl login dev -u admin -p rj2slcxjexa3n5v5rssw -k
-                '''
-            }
-        }
         stage('wso2 cli get envs') {
             steps {
                 bat '''
@@ -42,6 +35,13 @@ pipeline {
             steps {
                 bat '''
                 apictl vcs status -e dev -k
+                '''
+            }
+        }
+        stage('wso2 cli dev login') {
+            steps {
+                bat '''
+                apictl login dev -u admin -p rj2slcxjexa3n5v5rssw -k
                 '''
             }
         }
