@@ -38,13 +38,13 @@ pipeline {
                 '''
             }
         }
-        stage('wso2 cli dev login') {
-            steps {
-                bat '''
-                apictl login dev -u admin -p rj2slcxjexa3n5v5rssw -k
-                '''
-            }
-        }
+//         stage('wso2 cli dev login') {
+//             steps {
+//                 bat '''
+//                 apictl login dev -u admin -p rj2slcxjexa3n5v5rssw -k
+//                 '''
+//             }
+//         }
         stage('Deploy APIs To "dev" Environment') {
             steps {
                    bat '''
