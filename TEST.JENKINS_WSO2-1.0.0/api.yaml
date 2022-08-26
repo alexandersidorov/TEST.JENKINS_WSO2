@@ -7,34 +7,7 @@ data:
   version: 1.0.0
   provider: admin
   lifeCycleStatus: PUBLISHED
-  responseCachingEnabled: false
-  cacheTimeout: 300
-  hasThumbnail: false
-  isDefaultVersion: false
-  type: HTTP
-  transport:
-  - http
-  - https
-  tags:
-  - TEST.JENKINS_WSO2
-  policies:
-  - Unlimited
-  apiThrottlingPolicy: Unlimited
   visibility: PUBLIC
-  corsConfiguration:
-    corsConfigurationEnabled: true
-    accessControlAllowOrigins:
-     - '*'
-    accessControlAllowCredentials: true
-    accessControlAllowHeaders:
-     - '*'
-    accessControlAllowMethods:
-     - GET
-     - POST
-     - PUT
-     - DELETE
-     - PATCH
-     - OPTIONS
   endpointConfig:
     endpoint_type: http
     sandbox_endpoints:
