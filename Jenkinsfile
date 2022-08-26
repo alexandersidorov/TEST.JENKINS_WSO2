@@ -56,7 +56,7 @@ pipeline {
         stage('wso2 cli import') {
             steps {
                 bat '''
-                apictl import-api -f "%appDir%" -e dev -k
+                apictl import api -f "%appDir%\\TEST.APICTL.IMPORT-1.0" -e dev -k
                 '''
             }
         }
