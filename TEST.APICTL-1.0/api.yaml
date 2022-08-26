@@ -18,6 +18,20 @@ data:
   policies:
   - Unlimited
   visibility: PUBLIC
+  corsConfiguration:
+    corsConfigurationEnabled: true
+    accessControlAllowOrigins:
+      - '*'
+    accessControlAllowCredentials: true
+    accessControlAllowHeaders:
+      - '*'
+    accessControlAllowMethods:
+      - GET
+      - POST
+      - PUT
+      - DELETE
+      - PATCH
+      - OPTIONS
   endpointConfig:
     endpoint_type: http
     production_endpoints:
