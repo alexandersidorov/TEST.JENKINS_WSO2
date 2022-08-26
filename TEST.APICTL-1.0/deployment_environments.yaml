@@ -3,4 +3,4 @@ version: v4.0.0
 data:
  -
    displayOnDevportal: true
-   deploymentEnvironment: Prodaction and Sandbox
+   deploymentEnvironment: Production and Sandbox
