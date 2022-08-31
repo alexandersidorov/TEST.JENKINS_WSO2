@@ -38,40 +38,12 @@ pipeline {
                 '''
             }
         }
-        stage('wso2 cli set repo source') {
+        stage('import APIs To "dev" Environment') {
             steps {
                 bat '''
-                apictl set --vcs-source-repo-path "%appDir%" -k
+                apictl import api -f "%appDir%\\TEST.APICTL.DEPLOY-1.0" -e dev --update --rotate-revision -k
                 '''
             }
-        }
-        stage('wso2 cli vcs init') {
-            steps {
-                bat '''
-                apictl vcs init
-                '''
-            }
-        }
-        stage('wso2 cli vcs status') {
-            steps {
-                bat '''
-                apictl vcs status -e dev -k
-                '''
-            }
-        }
-        stage('deploy APIs To "dev" Environment') {
-            steps {
-                   bat '''
-                   apictl vcs deploy -e dev -k
-                   '''
-           }
-       }
-    }
-    post {
-        always {
-            bat '''
-            del vcs.yaml
-            '''
         }
     }
 }
