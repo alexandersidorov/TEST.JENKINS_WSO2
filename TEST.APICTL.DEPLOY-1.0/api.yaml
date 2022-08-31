@@ -2,7 +2,7 @@ type: api
 version: v4.0.0
 data:
   name: TEST.APICTL.DEPLOY
-  description: testing apictl with jenkins UPDATE
+  description: testing apictl with jenkins IMPORT
   context: /test/apictl/deploy
   version: "1.0"
   provider: admin
