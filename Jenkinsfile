@@ -69,7 +69,7 @@ pipeline {
         stage('import APIs To "dev" Environment') {
             steps {
                 bat '''
-                apictl import api -f "%appDir\\TEST.APICTL.DEPLOY-1.0%" -e dev --update --rotate-revision -k
+                apictl import api -f "%appDir%\\TEST.APICTL.DEPLOY-1.0" -e dev --update --rotate-revision -k
                 '''
             }
         }
